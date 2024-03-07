@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #00B4FF;
+            
+        }
+
+        #countdown {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.imgur.com/p1pfeco.png" alt="Centered Image">
+
+    <div id="countdown"></div>
+
+    <script>
+        // Set the target time (72 hours, 37 minutes, 35 seconds)
+        var targetTime = new Date();
+        targetTime.setHours(targetTime.getHours() + 72);
+        targetTime.setMinutes(targetTime.getMinutes() + 37);
+        targetTime.setSeconds(targetTime.getSeconds() + 35);
+
+        function updateCountdown() {
+            var currentTime = new Date();
+            var timeDifference = targetTime - currentTime;
+
+            var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = hours + " : " + minutes + " : " + seconds;
+
+            if (timeDifference <= 0) {
+                document.getElementById('countdown').innerHTML = "وصلنا إلى 0:0:0";
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
